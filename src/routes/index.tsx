@@ -40,15 +40,15 @@ function Hero() {
         alt="Alucard Institute campus at dusk"
         width={1920}
         height={1088}
-        initial={reduce ? undefined : { scale: 1.25, opacity: 0 }}
-        animate={reduce ? undefined : { scale: 1.08, opacity: 1 }}
+        initial={reduce ? {} : { scale: 1.25, opacity: 0 }}
+        animate={reduce ? {} : { scale: 1.08, opacity: 1 }}
         transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
-        style={reduce ? undefined : { scale, y: imgY }}
+        style={reduce ? {} : { scale, y: imgY }}
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-veil" />
       <motion.div aria-hidden style={{ y: orb }} className="absolute -left-40 top-1/3 h-[480px] w-[480px] rounded-full bg-gold/20 blur-[120px]" />
-      <motion.div style={reduce ? undefined : { y: textY, opacity: fade }} className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-28">
+      <motion.div style={reduce ? {} : { y: textY, opacity: fade }} className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-28">
         <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="eyebrow">
           Est. for the curious · {school.motto}
         </motion.p>
@@ -83,7 +83,7 @@ function Hero() {
         className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-night-muted"
       >
         Scroll
-        <motion.span animate={reduce ? undefined : { y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.8 }}>
+        <motion.span animate={reduce ? {} : { y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.8 }}>
           <ArrowDown className="h-4 w-4 text-gold" />
         </motion.span>
       </motion.a>

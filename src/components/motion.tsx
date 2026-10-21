@@ -25,8 +25,8 @@ export const variants = {
 type VariantName = keyof typeof variants;
 
 function withDelay(v: Variants, delay: number): Variants {
-  const show = v.show as { transition?: object };
-  return { ...v, show: { ...(v.show as object), transition: { ...show.transition, delay } } } as Variants;
+  const show = v["show"] as { transition?: object };
+  return { ...v, show: { ...(v["show"] as object), transition: { ...show.transition, delay } } } as Variants;
 }
 
 export function Reveal({
@@ -63,8 +63,8 @@ export function Stagger({ children, className, gap = 0.1 }: { children: ReactNod
   return (
     <motion.div
       className={className}
-      initial={reduce ? undefined : "hidden"}
-      whileInView={reduce ? undefined : "show"}
+      initial={reduce ? {} : "hidden"}
+      whileInView={reduce ? {} : "show"}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       variants={{ hidden: {}, show: { transition: { staggerChildren: gap } } }}
     >
@@ -103,7 +103,7 @@ export function SplitHeading({
     <Tag
       className={className}
       aria-label={text}
-      initial={reduce ? undefined : "hidden"}
+      initial={reduce ? {} : "hidden"}
       {...(reduce ? {} : trigger)}
       variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: delay } } }}
     >
@@ -147,8 +147,8 @@ export function ImageReveal({
     <motion.div
       ref={ref}
       className={cn("relative overflow-hidden", className)}
-      initial={reduce ? undefined : { clipPath: from }}
-      whileInView={reduce ? undefined : { clipPath: "inset(0 0 0 0)" }}
+      initial={reduce ? {} : { clipPath: from }}
+      whileInView={reduce ? {} : { clipPath: "inset(0 0 0 0)" }}
       viewport={{ once: true, margin: "0px 0px -15% 0px" }}
       transition={{ duration: 1.2, ease }}
     >
@@ -158,7 +158,7 @@ export function ImageReveal({
         loading="lazy"
         width={width}
         height={height}
-        style={reduce ? undefined : { y, scale: 1.18 }}
+        style={reduce ? {} : { y, scale: 1.18 }}
         className="h-full w-full object-cover"
       />
     </motion.div>
@@ -172,7 +172,7 @@ export function Parallax({ children, speed = 0.2, className }: { children: React
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [`${speed * 100}px`, `${-speed * 100}px`]);
   return (
-    <motion.div ref={ref} style={reduce ? undefined : { y }} className={className}>
+    <motion.div ref={ref} style={reduce ? {} : { y }} className={className}>
       {children}
     </motion.div>
   );

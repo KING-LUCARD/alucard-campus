@@ -11,9 +11,9 @@ export function PageHero({ eyebrow, title, intro, image }: { eyebrow: string; ti
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   return (
     <section ref={ref} className="relative flex min-h-[70vh] items-end overflow-hidden bg-night pb-20 pt-40">
-      <motion.img src={image} alt="" aria-hidden style={reduce ? undefined : { scale }} className="absolute inset-0 h-full w-full object-cover opacity-50" />
+      <motion.img src={image} alt="" aria-hidden style={reduce ? {} : { scale }} className="absolute inset-0 h-full w-full object-cover opacity-50" />
       <div className="absolute inset-0 bg-veil" />
-      <motion.div style={reduce ? undefined : { y, opacity }} className="relative mx-auto w-full max-w-7xl px-6">
+      <motion.div style={reduce ? {} : { y, opacity }} className="relative mx-auto w-full max-w-7xl px-6">
         <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="eyebrow">
           {eyebrow}
         </motion.p>
