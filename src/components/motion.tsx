@@ -24,6 +24,11 @@ export const variants = {
 
 type VariantName = keyof typeof variants;
 
+function withDelay(v: Variants, delay: number): Variants {
+  const show = v.show as { transition?: object };
+  return { ...v, show: { ...(v.show as object), transition: { ...show.transition, delay } } } as Variants;
+}
+
 export function Reveal({
   children,
   variant = "fadeUp",
@@ -46,10 +51,7 @@ export function Reveal({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-      variants={variants[variant]}
-      transition={{ delay }}
-      style={{ transitionDelay: undefined }}
-      custom={delay}
+      variants={withDelay(variants[variant], delay)}
     >
       {children}
     </M>
