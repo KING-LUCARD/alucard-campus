@@ -1,6 +1,7 @@
 # Alucard Institute build
 
-- [ ] Apply the uploaded cinematic brief: burgundy identity, revised homepage, student life, registration and email verification requirements.
+- [x] Apply burgundy identity, revised homepage, Student Life, secondary-school pathways and visible Log In/Sign Up navigation from the uploaded brief.
+- [x] Restrict public registration to Student and Teacher in validation and database policies.
 - [x] Update school contact number to +2347078128869, email to desdara247@gmail.com and location to Lekki.
 - [ ] Prepare the requested 9:16 cinematic promotional showcase; Files storage is temporarily unavailable.
 
