@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useState, type FormEvent } from 'react';
+import { z } from 'zod';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -10,7 +11,7 @@ import { pageHead } from '@/lib/metadata';
 import { registrationSchema } from '@/lib/school-validation';
 import campus from '@/assets/library.jpg';
 
-export const Route = createFileRoute('/auth')({ validateSearch: (search: Record<string, unknown>) => ({ mode: search.mode === 'register' ? 'register' : 'signin' }), head: () => pageHead('School sign-in', 'Secure access to your Alucard Institute school account.'), component: Auth });
+export const Route = createFileRoute('/auth')({ validateSearch: z.object({ mode: z.enum(['register', 'signin']).optional().catch(undefined) }), head: () => pageHead('School sign-in', 'Secure access to your Alucard Institute school account.'), component: Auth });
 function Auth() {
   const { user } = useSchoolAuth();
   const navigate = useNavigate();
