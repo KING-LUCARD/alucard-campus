@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep protected pages as named children of the integration-managed `_authenticated/route.tsx` layout; a childless pathless layout conflicts with the public home route.
+- Mount the shared school authentication provider inside the root QueryClientProvider so sign-in, account navigation and sign-out use one session listener.

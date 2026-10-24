@@ -14,4 +14,13 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+  it.each([
+    ["/", "/"],
+    ["/auth", "/auth"],
+    ["/reset-password", "/reset-password"],
+    ["/account", "/_authenticated/account"],
+  ])("matches %s to its unique leaf page", (path, routeId) => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes(path).at(-1)?.routeId).toBe(routeId);
+  });
 });

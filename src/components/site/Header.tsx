@@ -6,8 +6,11 @@ import { Logo } from "./Logo";
 import { nav } from "@/lib/site";
 import { useScrolled } from "@/components/motion";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useSchoolAuth } from "@/components/SchoolAuth";
 
 export function Header() {
+  const { user } = useSchoolAuth();
   const scrolled = useScrolled();
   const [open, setOpen] = useState(false);
   return (
@@ -32,9 +35,7 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
-          <span className="rounded-full border border-night-border px-4 py-2 text-xs font-semibold uppercase tracking-widest text-night-muted" title="Portals arrive in the next stage">
-            Portal sign-in · soon
-          </span>
+          <Button asChild variant="outline"><Link to={user ? '/account' : '/auth'}>{user ? 'My account' : 'School sign-in'}</Link></Button>
           <Link to="/admissions" className="rounded-full bg-gradient-gold px-5 py-2.5 text-sm font-semibold text-accent-foreground shadow-gold transition-transform hover:-translate-y-0.5">
             Apply now
           </Link>
@@ -52,6 +53,7 @@ export function Header() {
             className="overflow-hidden bg-night lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
+              <Button asChild variant="outline"><Link to={user ? '/account' : '/auth'} onClick={() => setOpen(false)}>{user ? 'My account' : 'School sign-in'}</Link></Button>
               {nav.map((n, i) => (
                 <motion.div key={n.to} initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.05 }}>
                   <Link to={n.to} onClick={() => setOpen(false)} className="block py-3 font-display text-2xl text-night-foreground">
