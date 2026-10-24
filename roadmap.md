@@ -1,5 +1,7 @@
 # Alucard Institute build
 
+- [x] Fix duplicate home-path configuration and missing sign-in account destination; add routing regression coverage.
+
 - [ ] Complete public pages, news search/filter, admissions and contact submission.
 - [ ] Implement verified registration, school profiles, pending role requests, sign-in/out and password recovery.
 - [ ] Implement authenticator MFA and secure recovery codes.

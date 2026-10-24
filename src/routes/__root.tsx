@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ScrollProgress } from "@/components/motion";
+import { SchoolAuthProvider } from "@/components/SchoolAuth";
 
 function NotFoundComponent() {
   return (
@@ -122,6 +123,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SchoolAuthProvider>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <ScrollProgress />
       <Header />
@@ -129,6 +131,7 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
+      </SchoolAuthProvider>
     </QueryClientProvider>
   );
 }
