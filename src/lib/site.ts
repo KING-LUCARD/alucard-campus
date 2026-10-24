@@ -1,13 +1,13 @@
 // Central school configuration. Edit here to update branding and contact details site-wide.
 // Values marked PLACEHOLDER must be replaced with real school information.
 export const school = {
-  name: "Alucard Institute",
+  name: "ALUCARD INSTITUTE",
   short: "Alucard",
   motto: "Lux in Disciplina",
-  tagline: "Where disciplined minds meet boundless curiosity.",
-  address: "PLACEHOLDER — 00 Campus Avenue, Your City",
-  phone: "PLACEHOLDER — +000 000 000 0000",
-  email: "PLACEHOLDER — admissions@your-domain.edu",
+  tagline: "A School Where Inquiry Shapes the Future.",
+  address: "Lekki",
+  phone: "+2347078128869",
+  email: "desdara247@gmail.com",
   hours: [
     { d: "Monday – Friday", h: "7:30 AM – 4:30 PM" },
     { d: "Saturday", h: "9:00 AM – 1:00 PM" },
@@ -22,11 +22,22 @@ export const school = {
 };
 
 export const nav = [
+  { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/academics", label: "Academics" },
   { to: "/admissions", label: "Admissions" },
+  { to: "/student-life", label: "Student Life" },
   { to: "/news", label: "News & Events" },
   { to: "/contact", label: "Contact" },
+] as const;
+
+export const schoolClasses = ['JSS1', 'JSS2', 'JSS3', 'SS1', 'SS2', 'SS3'] as const;
+export const coreSubjects = ['Mathematics', 'English'] as const;
+// Illustrative subject offerings; the school must confirm its final curriculum.
+export const departments = [
+  { name: 'Science', description: 'Explore the natural world through investigation, evidence and practical discovery.', subjects: ['Biology', 'Chemistry', 'Physics', 'Further Mathematics', 'Computer Studies'] },
+  { name: 'Commercial', description: 'Understand enterprise, economic decisions and the foundations of responsible business.', subjects: ['Financial Accounting', 'Commerce', 'Economics', 'Business Studies', 'Computer Studies'] },
+  { name: 'Arts', description: 'Develop expression, critical thought and a deeper understanding of people and society.', subjects: ['Literature in English', 'Government', 'History', 'Visual Arts', 'French'] },
 ] as const;
 
 // Sample figures — replace with verified school data.
