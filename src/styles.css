@@ -83,6 +83,7 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
+    overflow-x: clip;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
