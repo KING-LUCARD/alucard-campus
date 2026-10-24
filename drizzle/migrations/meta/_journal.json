@@ -8,6 +8,13 @@
       "when": 1792636836801,
       "tag": "0000_school_access_foundation",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792871580727,
+      "tag": "0001_restrict_public_school_roles",
+      "breakpoints": true
     }
   ]
 }

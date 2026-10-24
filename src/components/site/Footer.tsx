@@ -27,8 +27,8 @@ export function Footer() {
             <p className="eyebrow">Contact</p>
             <ul className="mt-4 space-y-2 text-sm text-night-muted">
               <li>{school.address}</li>
-              <li>{school.phone}</li>
-              <li>{school.email}</li>
+              <li><a href={`tel:${school.phone}`} className="hover:text-gold">{school.phone}</a></li>
+              <li className="break-words"><a href={`mailto:${school.email}`} className="hover:text-gold">{school.email}</a></li>
             </ul>
           </div>
         </Reveal>

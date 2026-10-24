@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useState, type FormEvent } from 'react';
+import { z } from 'zod';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -10,11 +11,12 @@ import { pageHead } from '@/lib/metadata';
 import { registrationSchema } from '@/lib/school-validation';
 import campus from '@/assets/library.jpg';
 
-export const Route = createFileRoute('/auth')({ head: () => pageHead('School sign-in', 'Secure access to your Alucard Institute school account.'), component: Auth });
+export const Route = createFileRoute('/auth')({ validateSearch: z.object({ mode: z.enum(['register', 'signin']).optional().catch(undefined) }), head: () => pageHead('School sign-in', 'Secure access to your Alucard Institute school account.'), component: Auth });
 function Auth() {
   const { user } = useSchoolAuth();
   const navigate = useNavigate();
-  const [mode,setMode] = useState<'signin'|'register'|'forgot'>('signin');
+  const search = Route.useSearch();
+  const [mode,setMode] = useState<'signin'|'register'|'forgot'>(search.mode === 'register' ? 'register' : 'signin');
   const [busy,setBusy] = useState(false);
   const [error,setError] = useState('');
   const [notice,setNotice] = useState('');
@@ -43,7 +45,7 @@ function Auth() {
     <ShieldCheck className="h-7 w-7 text-gold"/><p className="eyebrow mt-5">Alucard Institute</p><h1 className="mt-3 text-3xl">{mode==='register'?'Create school account':mode==='forgot'?'Reset your password':'Welcome back'}</h1>
     {user ? <div className="mt-6"><p className="text-muted-foreground">You’re signed in.</p><Button asChild className="mt-5 w-full"><Link to="/account">Open my account <ArrowRight/></Link></Button></div> : <>
     <form onSubmit={submit} className="mt-7 grid gap-5">
-      {mode==='register' && <><Field label="Full name"><Input name="display_name" autoComplete="name" required maxLength={100}/></Field><Field label="Requested school role"><select name="requested_role" className="h-10 rounded-md border border-input bg-background px-3"><option value="student">Student</option><option value="teacher">Teacher</option><option value="principal">Principal</option></select></Field><p className="text-sm text-muted-foreground">School approval is required. Administrator accounts are provisioned privately.</p></>}
+      {mode==='register' && <><Field label="Full name"><Input name="display_name" autoComplete="name" required maxLength={100}/></Field><Field label="Requested school role"><select name="requested_role" className="h-10 rounded-md border border-input bg-background px-3"><option value="student">Student</option><option value="teacher">Teacher</option></select></Field><p className="text-sm text-muted-foreground">School approval is required. Principal and administrator accounts are provisioned privately.</p></>}
       <Field label="Email address"><Input name="email" type="email" autoComplete="email" required/></Field>
       {mode!=='forgot' && <Field label="Password"><Input name="password" type="password" autoComplete={mode==='register'?'new-password':'current-password'} minLength={mode==='register'?12:1} required/></Field>}
       {mode==='register' && <p className="text-xs text-muted-foreground">At least 12 characters, including uppercase, lowercase and a number.</p>}

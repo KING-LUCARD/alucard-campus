@@ -9,6 +9,8 @@ export const Route = createFileRoute("/news/")({
       { name: "description", content: "Latest news, announcements, and upcoming events." },
       { property: "og:title", content: "News and events — Alucard Institute" },
       { property: "og:description", content: "Latest news, announcements, and upcoming events." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (

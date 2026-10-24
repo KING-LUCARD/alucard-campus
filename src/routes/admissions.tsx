@@ -9,6 +9,8 @@ export const Route = createFileRoute("/admissions")({
       { name: "description", content: "Requirements and how to apply to Alucard Institute." },
       { property: "og:title", content: "Admissions — Alucard Institute" },
       { property: "og:description", content: "Requirements and how to apply to Alucard Institute." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (

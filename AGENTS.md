@@ -11,3 +11,4 @@
 
 - Keep protected pages as named children of the integration-managed `_authenticated/route.tsx` layout; a childless pathless layout conflicts with the public home route.
 - Mount the shared school authentication provider inside the root QueryClientProvider so sign-in, account navigation and sign-out use one session listener.
+- Store reusable school identity and academic catalogue data in the central school configuration so public pages remain consistent when school details change.

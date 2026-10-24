@@ -17,6 +17,7 @@ import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as StudentLifeRouteImport } from './routes/student-life'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
@@ -60,6 +61,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentLifeRoute = StudentLifeRouteImport.update({
+  id: '/student-life',
+  path: '/student-life',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
   id: '/account',
   path: '/account',
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/student-life': typeof StudentLifeRoute
   '/account': typeof AuthenticatedAccountRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/student-life': typeof StudentLifeRoute
   '/account': typeof AuthenticatedAccountRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news': typeof NewsIndexRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/student-life': typeof StudentLifeRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/reset-password'
+    | '/student-life'
     | '/account'
     | '/news/$slug'
     | '/news/'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/reset-password'
+    | '/student-life'
     | '/account'
     | '/news/$slug'
     | '/news'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/reset-password'
+    | '/student-life'
     | '/_authenticated/account'
     | '/news/$slug'
     | '/news/'
@@ -163,6 +175,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  StudentLifeRoute: typeof StudentLifeRoute
   NewsSlugRoute: typeof NewsSlugRoute
   NewsIndexRoute: typeof NewsIndexRoute
 }
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student-life': {
+      id: '/student-life'
+      path: '/student-life'
+      fullPath: '/student-life'
+      preLoaderRoute: typeof StudentLifeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/account': {
       id: '/_authenticated/account'
       path: '/account'
@@ -269,6 +289,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  StudentLifeRoute: StudentLifeRoute,
   NewsSlugRoute: NewsSlugRoute,
   NewsIndexRoute: NewsIndexRoute,
 }

@@ -10,16 +10,11 @@ import { ImageReveal, Parallax, Reveal, SplitHeading, Stagger, StaggerItem } fro
 import { SectionTitle } from "@/components/site/PageHero";
 import { LatestNews, ProgramGrid, ScrollGallery, StatsBand, ArticleCard } from "@/components/site/sections";
 import { articles, school, testimonials } from "@/lib/site";
+import { Button } from '@/components/ui/button';
+import { pageHead } from '@/lib/metadata';
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Alucard Institute — Where disciplined minds meet curiosity" },
-      { name: "description", content: "Discover Alucard Institute: rigorous academics, inspiring teachers, modern facilities, and a vibrant student life." },
-      { property: "og:title", content: "Alucard Institute" },
-      { property: "og:description", content: "Rigorous academics, inspiring teachers, and a vibrant student life." },
-    ],
-  }),
+  head: () => pageHead('A School Where Inquiry Shapes the Future', 'Discover ALUCARD INSTITUTE in Lekki: knowledge, discipline, creativity and ambition for a changing world.'),
   component: Home,
 });
 
@@ -31,10 +26,9 @@ function Hero() {
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const orb = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   return (
-    <section ref={ref} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-night">
+    <section ref={ref} className="relative min-h-[620px] overflow-hidden bg-night md:min-h-[680px]">
       <motion.img
         src={hero}
         alt="Alucard Institute campus at dusk"
@@ -47,17 +41,16 @@ function Hero() {
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-veil" />
-      <motion.div aria-hidden style={{ y: orb }} className="absolute -left-40 top-1/3 h-[480px] w-[480px] rounded-full bg-gold/20 blur-[120px]" />
-      <motion.div style={reduce ? {} : { y: textY, opacity: fade }} className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-28">
+      <motion.div style={reduce ? {} : { y: textY, opacity: fade }} className="relative mx-auto flex max-w-7xl flex-col justify-end px-6 pb-24 pt-40 md:pt-48">
         <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="eyebrow">
-          Est. for the curious · {school.motto}
+          {school.name} · LEKKI
         </motion.p>
         <SplitHeading
           as="h1"
           immediate
           delay={0.45}
-          text="Shaping minds that light the way forward."
-          className="mt-5 max-w-5xl text-5xl font-light leading-[1.02] text-night-foreground sm:text-7xl lg:text-8xl"
+          text="A School Where Inquiry Shapes the Future."
+          className="mt-5 max-w-4xl text-4xl font-light leading-[1.1] text-night-foreground sm:text-6xl lg:text-7xl"
         />
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -65,15 +58,11 @@ function Hero() {
           transition={{ delay: 1.1, duration: 0.8 }}
           className="mt-8 max-w-xl text-lg text-night-muted"
         >
-          Alucard Institute pairs a demanding academic tradition with modern teaching, so every student leaves ready to think, lead, and create.
+          Discover an environment where knowledge, discipline, creativity, and ambition prepare students for a changing world.
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }} className="mt-10 flex flex-wrap gap-4">
-          <Link to="/admissions" className="rounded-full bg-gradient-gold px-8 py-4 font-semibold text-accent-foreground shadow-gold transition-transform hover:-translate-y-1">
-            Admissions
-          </Link>
-          <Link to="/about" className="rounded-full border border-night-foreground/30 px-8 py-4 font-semibold text-night-foreground backdrop-blur transition-colors hover:bg-night-foreground/10">
-            Explore our school
-          </Link>
+          <Button asChild size="lg" className="h-auto min-h-12 whitespace-normal bg-gradient-gold text-accent-foreground shadow-gold"><Link to="/admissions">Apply for Admission</Link></Button>
+          <Button asChild size="lg" variant="outline" className="h-auto min-h-12 whitespace-normal border-night-foreground/30 bg-night/30 text-night-foreground"><Link to="/academics">Explore Academics</Link></Button>
         </motion.div>
       </motion.div>
       <motion.a
@@ -99,7 +88,6 @@ function Home() {
 
       {/* Welcome */}
       <section id="welcome" className="relative overflow-hidden py-32">
-        <Parallax speed={0.6} className="pointer-events-none absolute right-[-10%] top-10 h-72 w-72 rounded-full border border-gold/30" >{null}</Parallax>
         <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2">
           <div>
             <SectionTitle eyebrow="Welcome" title="An education with both depth and heart" />
@@ -241,7 +229,6 @@ function Home() {
       {/* CTA */}
       <section className="px-6 pb-32">
         <Reveal variant="scaleUp" className="grain relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-night px-8 py-20 text-center md:px-20">
-          <Parallax speed={0.5} className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/20 blur-3xl">{null}</Parallax>
           <SplitHeading text="Admissions are open for the coming session" className="relative mx-auto max-w-3xl text-4xl font-light text-night-foreground md:text-6xl" />
           <p className="relative mx-auto mt-6 max-w-xl text-night-muted">Begin your application online in minutes. Our admissions team will guide you through every step.</p>
           <Link to="/admissions" className="relative mt-10 inline-block rounded-full bg-gradient-gold px-10 py-4 font-semibold text-accent-foreground shadow-gold transition-transform hover:-translate-y-1">
@@ -262,7 +249,7 @@ function Home() {
               <c.icon className="h-6 w-6 shrink-0 text-gold" />
               <div>
                 <p className="eyebrow">{c.l}</p>
-                <p className="mt-1 text-muted-foreground">{c.v}</p>
+                <p className="mt-1 break-words text-muted-foreground">{c.l === 'Call' ? <a href={`tel:${school.phone}`}>{c.v}</a> : c.l === 'Write' ? <a href={`mailto:${school.email}`}>{c.v}</a> : c.v}</p>
               </div>
             </StaggerItem>
           ))}

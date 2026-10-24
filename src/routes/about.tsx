@@ -9,6 +9,8 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Our history, values, leadership, and facilities." },
       { property: "og:title", content: "About us — Alucard Institute" },
       { property: "og:description", content: "Our history, values, leadership, and facilities." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (
