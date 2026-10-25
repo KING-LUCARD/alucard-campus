@@ -36,7 +36,7 @@ function Auth() {
       } else {
         const {error}=await supabase.auth.signInWithPassword({email:String(data['email']),password:String(data['password'])});
         if(error) throw error;
-        await navigate({to:'/account'});
+        await navigate({to:'/home'});
       }
     } catch(err) { setError(err instanceof Error ? (err.name==='ZodError' ? 'Use a valid email and a password of at least 12 characters, including uppercase, lowercase and a number.' : err.message) : 'Please try again.'); }
     finally {setBusy(false);}

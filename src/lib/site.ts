@@ -22,7 +22,7 @@ export const school = {
 };
 
 export const nav = [
-  { to: "/", label: "Home" },
+  { to: "/home", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/academics", label: "Academics" },
   { to: "/admissions", label: "Admissions" },
@@ -57,75 +57,40 @@ export const programs = [
   { title: "Creative Arts", desc: "Music, visual art, and drama that cultivate expression and craft.", icon: "Palette" },
 ] as const;
 
+import sportsImg from "@/assets/sports.jpg";
+import basketballImg from "@/assets/basketball.jpg";
+import debateImg from "@/assets/debate.jpg";
+import codingImg from "@/assets/coding.jpg";
+import labImg from "@/assets/lab.jpg";
+import studentsImg from "@/assets/students.jpg";
+import libraryImg from "@/assets/library.jpg";
+
+export const newsCategories = ["Sports", "Academics", "Student Life", "Achievements", "Announcements"] as const;
 export type Article = {
   slug: string;
   title: string;
   date: string;
-  category: "News" | "Announcement" | "Event";
+  category: (typeof newsCategories)[number] | "Event";
   excerpt: string;
   body: string[];
+  image: string;
+  alt: string;
+  location?: string;
 };
 
-// Sample articles — illustrative only.
+// Demonstration articles and events only — replace with school-confirmed content. Dates are illustrative.
+const demo = "This is demonstration content and will be replaced once the school confirms details.";
 export const articles: Article[] = [
-  {
-    slug: "new-science-wing-opens",
-    title: "The new science wing opens its doors",
-    date: "2026-10-12",
-    category: "News",
-    excerpt: "Six purpose-built laboratories give students room to experiment, fail, and discover.",
-    body: [
-      "This term our students began working in the newly completed science wing, featuring six laboratories and a shared research commons.",
-      "Teachers have redesigned the practical curriculum so every student completes at least one independent investigation per term.",
-      "This is sample content — replace with real school news.",
-    ],
-  },
-  {
-    slug: "term-two-registration",
-    title: "Term two course registration now open",
-    date: "2026-10-05",
-    category: "Announcement",
-    excerpt: "Students should confirm elective choices with their form tutor before the deadline.",
-    body: [
-      "Course registration for term two is now open in the student portal.",
-      "Please confirm elective selections with your form tutor. This is sample content.",
-    ],
-  },
-  {
-    slug: "annual-science-fair",
-    title: "Annual Science & Innovation Fair",
-    date: "2026-11-14",
-    category: "Event",
-    excerpt: "Families are invited to explore student projects across physics, biology, and engineering.",
-    body: [
-      "Join us in the main hall for an afternoon of student-led demonstrations and research posters.",
-      "Doors open at 10:00 AM. This is sample content.",
-    ],
-  },
-  {
-    slug: "debate-team-regional",
-    title: "Debate team advances to regional finals",
-    date: "2026-09-28",
-    category: "News",
-    excerpt: "Our senior debaters argued their way through four rounds to reach the finals.",
-    body: ["After four rounds, the senior debate team secured a place in the regional finals. Sample content."],
-  },
-  {
-    slug: "open-day",
-    title: "Admissions Open Day",
-    date: "2026-11-28",
-    category: "Event",
-    excerpt: "Tour the campus, meet teachers, and learn about the application process.",
-    body: ["Prospective families can tour the campus and speak with faculty. Sample content."],
-  },
-  {
-    slug: "mid-term-break",
-    title: "Mid-term break schedule",
-    date: "2026-10-18",
-    category: "Announcement",
-    excerpt: "Classes pause for one week; the library remains open with reduced hours.",
-    body: ["Classes will pause for mid-term break. The library will remain open 9 AM – 1 PM. Sample content."],
-  },
+  { slug: "inter-house-sports", title: "Inter-House Sports Competition", date: "2026-10-12", category: "Sports", image: sportsImg, alt: "Students in burgundy kits running a relay race on the school track", excerpt: "Houses compete in relays, sprints and field events in a celebration of teamwork.", body: ["Inter-house sports bring every class together to compete, cheer and build house spirit.", demo] },
+  { slug: "basketball-championship", title: "Basketball Championship", date: "2026-10-05", category: "Sports", image: basketballImg, alt: "Students in uniform playing basketball on an outdoor court", excerpt: "Teams battle on court as students practise strategy, discipline and fair play.", body: ["Our basketball programme develops skill, fitness and leadership on and off the court.", demo] },
+  { slug: "science-innovation-exhibition", title: "Science and Innovation Exhibition", date: "2026-09-28", category: "Academics", image: labImg, alt: "Students carrying out an experiment in a science laboratory", excerpt: "Students present investigations and prototypes across physics, chemistry and biology.", body: ["The exhibition showcases inquiry-led projects designed and tested by students.", demo] },
+  { slug: "debate-competition", title: "Debate Competition", date: "2026-09-20", category: "Student Life", image: debateImg, alt: "A student speaking at a podium during a debate", excerpt: "Debaters sharpen argument, research and public speaking before a live audience.", body: ["Debate builds confidence, critical thinking and respect for opposing views.", demo] },
+  { slug: "cultural-day", title: "Cultural Day Celebration", date: "2026-09-12", category: "Student Life", image: studentsImg, alt: "Students together on campus", excerpt: "A day of music, dress, food and stories celebrating the cultures in our community.", body: ["Cultural Day invites students to share heritage and learn from one another.", demo] },
+  { slug: "student-achievement-awards", title: "Student Achievement Awards", date: "2026-09-05", category: "Achievements", image: codingImg, alt: "Students working together on laptops and a robot in coding club", excerpt: "Recognising effort, character and excellence across academics, arts and service.", body: ["Awards celebrate students who show excellence, integrity and leadership.", demo] },
+  { slug: "new-academic-session", title: "New Academic Session", date: "2026-09-01", category: "Announcements", image: libraryImg, alt: "School library with study tables", excerpt: "Welcome guidance for families as JSS1–SS3 classes begin the new session.", body: ["Families will receive timetables, uniform guidance and class information before resumption.", demo] },
+  { slug: "open-day", title: "Admissions Open Day", date: "2026-11-28", category: "Event", location: "Main campus, Lekki", image: studentsImg, alt: "Students on campus", excerpt: "Tour the campus, meet teachers and learn how to apply.", body: ["Prospective families can tour the campus and speak with staff.", demo] },
+  { slug: "science-fair", title: "Science & Innovation Fair", date: "2026-11-14", category: "Event", location: "School hall", image: labImg, alt: "Science laboratory", excerpt: "Families explore student projects in science and technology.", body: ["An afternoon of student-led demonstrations.", demo] },
+  { slug: "sports-day", title: "Inter-House Sports Day", date: "2026-12-05", category: "Event", location: "School field", image: sportsImg, alt: "Students running on the track", excerpt: "Track and field finals with houses competing for the trophy.", body: ["Parents and guardians are welcome to cheer.", demo] },
 ];
 
 export const testimonials = [

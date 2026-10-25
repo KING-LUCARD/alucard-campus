@@ -1,5 +1,4 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import img from "@/assets/hero.jpg";
 import { PageHero } from "@/components/site/PageHero";
 import { articles } from "@/lib/site";
 
@@ -26,8 +25,9 @@ function Article() {
   const a = Route.useLoaderData();
   return (
     <>
-      <PageHero eyebrow={a.category} title={a.title} intro={a.excerpt} image={img} />
+      <PageHero eyebrow={a.category} title={a.title} intro={a.excerpt} image={a.image} />
       <article className="mx-auto max-w-3xl space-y-6 px-6 py-24 text-lg">
+        {a.location && <p className="font-semibold text-primary">{a.location}</p>}
         {a.body.map((p, i) => <p key={i}>{p}</p>)}
       </article>
     </>

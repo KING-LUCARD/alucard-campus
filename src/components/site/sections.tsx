@@ -61,8 +61,10 @@ export function ArticleCard({ a }: { a: Article }) {
     <Link to="/news/$slug" params={{ slug: a.slug }} className="group block h-full">
       <motion.article
         whileHover={{ y: -6 }}
-        className="flex h-full flex-col rounded-2xl border border-border bg-card p-7 transition-shadow hover:shadow-elegant"
+        className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-elegant"
       >
+        <div className="aspect-[16/10] overflow-hidden"><img src={a.image} alt={a.alt} loading="lazy" width={1280} height={832} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div>
+        <div className="flex flex-1 flex-col p-7">
         <div className="flex items-center justify-between text-xs">
           <span className="rounded-full bg-secondary px-3 py-1 font-semibold uppercase tracking-wider text-primary">{a.category}</span>
           <span className="flex items-center gap-1 text-muted-foreground">
@@ -74,6 +76,7 @@ export function ArticleCard({ a }: { a: Article }) {
         <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold">
           Read more <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </span>
+        </div>
       </motion.article>
     </Link>
   );
