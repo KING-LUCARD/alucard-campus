@@ -13,7 +13,7 @@ import { articles, school, testimonials } from "@/lib/site";
 import { Button } from '@/components/ui/button';
 import { pageHead } from '@/lib/metadata';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/home")({
   head: () => pageHead('A School Where Inquiry Shapes the Future', 'Discover ALUCARD INSTITUTE in Lekki: knowledge, discipline, creativity and ambition for a changing world.'),
   component: Home,
 });
