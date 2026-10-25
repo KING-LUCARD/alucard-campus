@@ -7,7 +7,8 @@
 
 - [x] Fix duplicate home-path configuration and missing sign-in account destination; add routing regression coverage.
 
-- [ ] Complete public pages, news search/filter, admissions and contact submission.
+- [x] Complete About, Admissions (online form), Student Life gallery and filterable News & Events with photos.
+- [x] Add a welcome page asking visitors to sign up or log in before the home page.
 - [ ] Implement verified registration, school profiles, pending role requests, sign-in/out and password recovery.
 - [ ] Replace the previous MFA plan with signup email OTP and username login per the newer brief; review existing privileged access controls before changing them.
 - [ ] Implement backend-enforced four-role portals and approval management.
