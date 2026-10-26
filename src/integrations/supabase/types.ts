@@ -61,6 +61,148 @@ export type Database = {
           },
         ]
       }
+      announcements: {
+        Row: {
+          author_id: string
+          body: string
+          class_id: string | null
+          created_at: string
+          id: string
+          title: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          class_id?: string | null
+          created_at?: string
+          id?: string
+          title: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          class_id?: string | null
+          created_at?: string
+          id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "announcements_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "announcements_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assignments: {
+        Row: {
+          class_id: string
+          created_at: string
+          due_at: string
+          id: string
+          instructions: string
+          subject_id: string
+          teacher_id: string
+          title: string
+          total_marks: number
+        }
+        Insert: {
+          class_id: string
+          created_at?: string
+          due_at: string
+          id?: string
+          instructions?: string
+          subject_id: string
+          teacher_id: string
+          title: string
+          total_marks?: number
+        }
+        Update: {
+          class_id?: string
+          created_at?: string
+          due_at?: string
+          id?: string
+          instructions?: string
+          subject_id?: string
+          teacher_id?: string
+          title?: string
+          total_marks?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assignments_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assignments_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assignments_teacher_id_fkey"
+            columns: ["teacher_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      attendance: {
+        Row: {
+          class_id: string
+          day: string
+          id: string
+          present: boolean
+          recorded_by: string
+          student_id: string
+        }
+        Insert: {
+          class_id: string
+          day?: string
+          id?: string
+          present: boolean
+          recorded_by: string
+          student_id: string
+        }
+        Update: {
+          class_id?: string
+          day?: string
+          id?: string
+          present?: boolean
+          recorded_by?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendance_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       audit_logs: {
         Row: {
           action: string
@@ -82,6 +224,27 @@ export type Database = {
           created_at?: string
           id?: string
           target_id?: string | null
+        }
+        Relationships: []
+      }
+      classes: {
+        Row: {
+          id: string
+          name: string
+          senior: boolean
+          sort: number
+        }
+        Insert: {
+          id?: string
+          name: string
+          senior?: boolean
+          sort?: number
+        }
+        Update: {
+          id?: string
+          name?: string
+          senior?: boolean
+          sort?: number
         }
         Relationships: []
       }
@@ -123,24 +286,66 @@ export type Database = {
           },
         ]
       }
+      enrollments: {
+        Row: {
+          class_id: string
+          created_at: string
+          department: string | null
+          status: string
+          student_id: string
+        }
+        Insert: {
+          class_id: string
+          created_at?: string
+          department?: string | null
+          status?: string
+          student_id: string
+        }
+        Update: {
+          class_id?: string
+          created_at?: string
+          department?: string | null
+          status?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enrollments_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "enrollments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
           display_name: string
           email: string
           id: string
+          status: string
         }
         Insert: {
           created_at?: string
           display_name?: string
           email?: string
           id: string
+          status?: string
         }
         Update: {
           created_at?: string
           display_name?: string
           email?: string
           id?: string
+          status?: string
         }
         Relationships: []
       }
@@ -179,6 +384,118 @@ export type Database = {
           },
         ]
       }
+      subjects: {
+        Row: {
+          core: boolean
+          department: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          core?: boolean
+          department?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          core?: boolean
+          department?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      submissions: {
+        Row: {
+          assignment_id: string
+          body: string
+          feedback: string
+          id: string
+          published: boolean
+          score: number | null
+          student_id: string
+          submitted_at: string
+        }
+        Insert: {
+          assignment_id: string
+          body: string
+          feedback?: string
+          id?: string
+          published?: boolean
+          score?: number | null
+          student_id: string
+          submitted_at?: string
+        }
+        Update: {
+          assignment_id?: string
+          body?: string
+          feedback?: string
+          id?: string
+          published?: boolean
+          score?: number | null
+          student_id?: string
+          submitted_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "submissions_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "assignments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "submissions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teaching_assignments: {
+        Row: {
+          class_id: string
+          id: string
+          subject_id: string
+          teacher_id: string
+        }
+        Insert: {
+          class_id: string
+          id?: string
+          subject_id: string
+          teacher_id: string
+        }
+        Update: {
+          class_id?: string
+          id?: string
+          subject_id?: string
+          teacher_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teaching_assignments_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "teaching_assignments_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "teaching_assignments_teacher_id_fkey"
+            columns: ["teacher_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           active: boolean
@@ -205,14 +522,34 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_assign_teacher: {
+        Args: { cls: string; subj: string; teacher: string }
+        Returns: undefined
+      }
+      admin_set_enrollment: {
+        Args: { cls: string; dept: string; target: string }
+        Returns: undefined
+      }
+      admin_set_user: {
+        Args: {
+          new_role: Database["public"]["Enums"]["app_role"]
+          new_status: string
+          target: string
+        }
+        Returns: undefined
+      }
       has_school_role: {
         Args: { wanted: Database["public"]["Enums"]["app_role"] }
         Returns: boolean
       }
+      is_staff_reader: { Args: never; Returns: boolean }
+      my_class: { Args: never; Returns: string }
       review_role_request: {
         Args: { approve: boolean; request_id: string }
         Returns: undefined
       }
+      teaches: { Args: { c: string; s: string }; Returns: boolean }
+      teaches_class: { Args: { c: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "principal" | "teacher" | "student"
