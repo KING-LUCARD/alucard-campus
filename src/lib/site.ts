@@ -48,13 +48,20 @@ export const stats = [
   { value: 42, suffix: "", label: "Competition awards", pct: 70 },
 ];
 
+import sciencesImg from "@/assets/lab.jpg";
+import mathematicsImg from "@/assets/mathematics.jpg";
+import humanitiesImg from "@/assets/humanities.jpg";
+import technologyImg from "@/assets/coding.jpg";
+import languagesImg from "@/assets/languages.jpg";
+import creativeArtsImg from "@/assets/creative-arts.jpg";
+
 export const programs = [
-  { title: "Sciences", desc: "Physics, chemistry, and biology taught through inquiry and real laboratory work.", icon: "FlaskConical" },
-  { title: "Mathematics", desc: "From foundations to further mathematics, with problem-solving at the centre.", icon: "Sigma" },
-  { title: "Humanities", desc: "History, literature, and philosophy that sharpen argument and empathy.", icon: "BookOpen" },
-  { title: "Technology", desc: "Computer science, robotics, and design thinking for a digital future.", icon: "Cpu" },
-  { title: "Languages", desc: "Fluency in English, French, and Spanish through immersion and dialogue.", icon: "Languages" },
-  { title: "Creative Arts", desc: "Music, visual art, and drama that cultivate expression and craft.", icon: "Palette" },
+  { title: "Sciences", desc: "Physics, chemistry, and biology taught through inquiry and real laboratory work.", icon: "FlaskConical", image: sciencesImg, alt: "Students carrying out an experiment in a science laboratory" },
+  { title: "Mathematics", desc: "From foundations to further mathematics, with problem-solving at the centre.", icon: "Sigma", image: mathematicsImg, alt: "A teacher and students solving geometry problems on a chalkboard" },
+  { title: "Humanities", desc: "History, literature, and philosophy that sharpen argument and empathy.", icon: "BookOpen", image: humanitiesImg, alt: "Students discussing literature together in the school library" },
+  { title: "Technology", desc: "Computer science, robotics, and design thinking for a digital future.", icon: "Cpu", image: technologyImg, alt: "Students working on laptops and a robot in coding club" },
+  { title: "Languages", desc: "Fluency in English, French, and Spanish through immersion and dialogue.", icon: "Languages", image: languagesImg, alt: "Students practising conversation in a bright language classroom" },
+  { title: "Creative Arts", desc: "Music, visual art, and drama that cultivate expression and craft.", icon: "Palette", image: creativeArtsImg, alt: "A student painting at an easel in the school art studio" },
 ] as const;
 
 import sportsImg from "@/assets/sports.jpg";
