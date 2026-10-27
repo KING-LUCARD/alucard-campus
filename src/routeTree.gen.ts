@@ -19,7 +19,11 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as StudentLifeRouteImport } from './routes/student-life'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedPrincipalRouteImport } from './routes/_authenticated/principal'
+import { Route as AuthenticatedStudentRouteImport } from './routes/_authenticated/student'
+import { Route as AuthenticatedTeacherRouteImport } from './routes/_authenticated/teacher'
 import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 
@@ -72,9 +76,29 @@ const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
   path: '/account',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   id: '/home',
   path: '/home',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPrincipalRoute = AuthenticatedPrincipalRouteImport.update({
+  id: '/principal',
+  path: '/principal',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStudentRoute = AuthenticatedStudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTeacherRoute = AuthenticatedTeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const NewsIndexRoute = NewsIndexRouteImport.update({
@@ -98,7 +122,11 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/student-life': typeof StudentLifeRoute
   '/account': typeof AuthenticatedAccountRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/principal': typeof AuthenticatedPrincipalRoute
+  '/student': typeof AuthenticatedStudentRoute
+  '/teacher': typeof AuthenticatedTeacherRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
 }
@@ -112,7 +140,11 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/student-life': typeof StudentLifeRoute
   '/account': typeof AuthenticatedAccountRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/principal': typeof AuthenticatedPrincipalRoute
+  '/student': typeof AuthenticatedStudentRoute
+  '/teacher': typeof AuthenticatedTeacherRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news': typeof NewsIndexRoute
 }
@@ -128,7 +160,11 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/student-life': typeof StudentLifeRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/principal': typeof AuthenticatedPrincipalRoute
+  '/_authenticated/student': typeof AuthenticatedStudentRoute
+  '/_authenticated/teacher': typeof AuthenticatedTeacherRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
 }
@@ -144,7 +180,11 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/student-life'
     | '/account'
+    | '/admin'
     | '/home'
+    | '/principal'
+    | '/student'
+    | '/teacher'
     | '/news/$slug'
     | '/news/'
   fileRoutesByTo: FileRoutesByTo
@@ -158,7 +198,11 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/student-life'
     | '/account'
+    | '/admin'
     | '/home'
+    | '/principal'
+    | '/student'
+    | '/teacher'
     | '/news/$slug'
     | '/news'
   id:
@@ -173,7 +217,11 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/student-life'
     | '/_authenticated/account'
+    | '/_authenticated/admin'
     | '/_authenticated/home'
+    | '/_authenticated/principal'
+    | '/_authenticated/student'
+    | '/_authenticated/teacher'
     | '/news/$slug'
     | '/news/'
   fileRoutesById: FileRoutesById
@@ -264,11 +312,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAccountRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/principal': {
+      id: '/_authenticated/principal'
+      path: '/principal'
+      fullPath: '/principal'
+      preLoaderRoute: typeof AuthenticatedPrincipalRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/student': {
+      id: '/_authenticated/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof AuthenticatedStudentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/teacher': {
+      id: '/_authenticated/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof AuthenticatedTeacherRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/news/': {
@@ -290,12 +366,20 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedPrincipalRoute: typeof AuthenticatedPrincipalRoute
+  AuthenticatedStudentRoute: typeof AuthenticatedStudentRoute
+  AuthenticatedTeacherRoute: typeof AuthenticatedTeacherRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAccountRoute: AuthenticatedAccountRoute,
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedPrincipalRoute: AuthenticatedPrincipalRoute,
+  AuthenticatedStudentRoute: AuthenticatedStudentRoute,
+  AuthenticatedTeacherRoute: AuthenticatedTeacherRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
