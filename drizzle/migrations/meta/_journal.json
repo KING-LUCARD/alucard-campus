@@ -15,6 +15,20 @@
       "when": 1792871580727,
       "tag": "0001_restrict_public_school_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793043047000,
+      "tag": "0002_school_portals",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793066497624,
+      "tag": "0003_portal_profile_visibility",
+      "breakpoints": true
     }
   ]
 }

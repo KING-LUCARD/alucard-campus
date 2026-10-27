@@ -37,17 +37,22 @@ export function ProgramGrid() {
             <motion.div
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-elegant"
+              className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-elegant"
             >
-              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/10 transition-transform duration-700 group-hover:scale-[2.5]" />
-              <motion.div whileHover={{ rotate: -8, scale: 1.1 }} className="relative grid h-14 w-14 place-items-center rounded-xl bg-primary text-gold">
-                <Icon className="h-6 w-6" />
-              </motion.div>
-              <h3 className="relative mt-6 text-2xl">{p.title}</h3>
-              <p className="relative mt-3 text-muted-foreground">{p.desc}</p>
-              <span className="relative mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
-                Explore <ArrowUpRight className="h-4 w-4" />
-              </span>
+              <div className="relative aspect-[16/9] overflow-hidden">
+                <img src={p.image} alt={p.alt} loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-veil" />
+                <motion.div whileHover={{ rotate: -8, scale: 1.1 }} className="absolute bottom-0 left-6 translate-y-1/2 grid h-14 w-14 place-items-center rounded-xl bg-primary text-gold shadow-elegant">
+                  <Icon className="h-6 w-6" />
+                </motion.div>
+              </div>
+              <div className="p-8 pt-10">
+                <h3 className="relative text-2xl">{p.title}</h3>
+                <p className="relative mt-3 text-muted-foreground">{p.desc}</p>
+                <span className="relative mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                  Explore <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </div>
             </motion.div>
           </StaggerItem>
         );
