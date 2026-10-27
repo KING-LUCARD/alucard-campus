@@ -29,6 +29,20 @@
       "when": 1793066497624,
       "tag": "0003_portal_profile_visibility",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793066501624,
+      "tag": "0004_school_extras",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1793066502624,
+      "tag": "0005_username_login",
+      "breakpoints": true
     }
   ]
 }

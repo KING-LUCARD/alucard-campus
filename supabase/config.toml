@@ -1,1 +1,14 @@
 project_id = "izoiodbioxqgovhxnwgq"
+
+# Email-code (OTP) sign-up. Apply with `supabase config push`, or set the same values in
+# Supabase Dashboard → Authentication → Providers → Email / Email Templates.
+[auth.email]
+enable_signup = true
+enable_confirmations = true      # users must verify their email before they can log in
+otp_length = 6
+otp_expiry = 600                 # code lifetime in seconds (10 minutes)
+max_frequency = "60s"            # minimum gap between code emails per user
+
+[auth.email.template.confirmation]
+subject = "Your ALUCARD INSTITUTE verification code"
+content_path = "./supabase/templates/confirmation.html"
